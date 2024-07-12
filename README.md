@@ -1,4 +1,4 @@
-# 
+# cli
 ## 例子
 ```go
 package main
@@ -149,5 +149,60 @@ added task:  dsfdsfd
 
 ```
 
-# 官网
+## 官网
 https://cli.urfave.org/v2/examples/bash-completions/
+
+#  cobra
+## 概念
+Cobra 建立在命令、参数和标志这三个结构之上。要使用 Cobra 编写一个命令行程序，需要明确这三个概念。
+
+
+
+命令（COMMAND）：命令表示要执行的操作。
+
+参数（ARG）：是命令的参数，一般用来表示操作的对象。
+
+标志（FLAG）：是命令的修饰，可以调整操作的行为。
+
+
+
+一个好的命令行程序在使用时读起来像句子，用户会自然的理解并知道如何使用该程序。
+
+
+
+要编写一个好的命令行程序，需要遵循的模式是 APPNAME VERB NOUN --ADJECTIVE 或 APPNAME COMMAND ARG --FLAG。
+## 快速开始
+使用 Cobra 很容易。首先，用于安装最新版本 的图书馆。此命令将安装生成器可执行文件 以及库及其依赖项：go getcobra
+>go get -u github.com/spf13/cobra/cobra
+
+接下来，将 Cobra 包含在您的应用程序中：
+>import "github.com/spf13/cobra"
+
+此外我们需要下载一个 Cobra 的命令行工具，它将生成一个新项目，并包含一个基本的命令行工具。
+>go install github.com/spf13/cobra-cli@latest
+
+然后我们在项目目录下输入以下命令创建我们的命令行工具
+>cobra-cli init
+
+之后便会生成以下目录
+```shell
+D:.
+│   go.mod
+│   go.sum
+│   LICENSE
+│   main.go
+│   README.md
+└───cmd
+        root.go
+```
+root.go是我们的命令行程序，我们可以在main.go中运行。效果如下
+```shell
+go run .\main.go
+A longer description that spans multiple lines and likely contains
+examples and usage of using your application. For example:
+
+Cobra is a CLI library for Go that empowers applications.
+This application is a tool to generate the needed files
+to quickly create a Cobra application.
+
+```
