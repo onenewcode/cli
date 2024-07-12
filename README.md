@@ -100,3 +100,54 @@ func main() {
 go run .\flags\main.go  -lang  spanish
 Hola Nefertiti
 ```
+## 子命令行
+```go
+package main
+
+import (
+	"fmt"
+	"log"
+	"os"
+
+	"github.com/urfave/cli/v2"
+)
+
+func main() {
+	app := &cli.App{
+		Flags: []cli.Flag{
+			&cli.StringFlag{
+				Name:  "lang",
+				Value: "english",
+				Usage: "language for the greeting",
+			},
+		},
+		Action: func(cCtx *cli.Context) error {
+			name := "Nefertiti"
+			if cCtx.NArg() > 0 {
+				name = cCtx.Args().Get(0)
+			}
+			// 获取指定的flag
+			if cCtx.String("lang") == "spanish" {
+				fmt.Println("Hola", name)
+			} else {
+				fmt.Println("Hello", name)
+			}
+			return nil
+		},
+	}
+
+	if err := app.Run(os.Args); err != nil {
+		log.Fatal(err)
+	}
+}
+
+```
+
+```shell
+go run .\subcommands\main.go a dsfdsfd 
+added task:  dsfdsfd
+
+```
+
+# 官网
+https://cli.urfave.org/v2/examples/bash-completions/

@@ -22,6 +22,7 @@ func main() {
 			if cCtx.NArg() > 0 {
 				name = cCtx.Args().Get(0)
 			}
+			// 获取指定的flag
 			if cCtx.String("lang") == "spanish" {
 				fmt.Println("Hola", name)
 			} else {
