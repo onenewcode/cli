@@ -19,11 +19,23 @@ var rootCmd = &cobra.Command{
 	Short: "A brief description of your application",
 	// 长描述，可以换行
 	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+examples and usage of using your application. For example:`,
+	Run: func(cmd *cobra.Command, args []string) {
+		if name != "" {
+			fmt.Printf("Hello, %s!\n", name)
+		} else {
+			fmt.Println("Hello, World!")
+		}
+	},
+}
+var versionCmd = &cobra.Command{
+	// 命令行的名称
+	Use: "version",
+	// 段描述
+	Short: "A brief description of your application",
+	// 长描述，可以换行
+	Long: `A longer description that spans multiple lines and likely contains
+examples and usage of using your application. For example:`,
 	Run: func(cmd *cobra.Command, args []string) {
 		if name != "" {
 			fmt.Printf("Hello, %s!\n", name)
@@ -48,5 +60,6 @@ func Execute() {
 func init() {
 	//
 	rootCmd.Flags().StringVarP(&name, "name", "n", "", "Name to greet")
-
+	// 添加子命令行
+	rootCmd.AddCommand(versionCmd)
 }
